@@ -1,0 +1,45 @@
+﻿@model CloudServiceChallenge2.Models.UserDataModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>削除</h1>
+
+<h3>これを削除してもよろしいですか？</h3>
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            名前
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            勝利数
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfWins)
+        </dd>
+        <dt class="col-sm-2">
+            敗北数
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfDefeats)
+        </dd>
+        <dt class="col-sm-2">
+            ドローの数
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NumberOfDraws)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserId" />
+        <input type="submit" value="削除" class="btn btn-danger" /> |
+        <a asp-action="Index">リストに戻る</a>
+    </form>
+</div>

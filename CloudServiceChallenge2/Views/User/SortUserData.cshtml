@@ -1,0 +1,60 @@
+﻿
+@model IEnumerable<CloudServiceChallenge2.Models.UserDataModel>
+
+@{
+    ViewData["Title"] = "SortUserData";
+}
+
+<h1>Top Ten</h1>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Winning Percentage
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+       @{
+           int rank = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @rank
+                    @{rank++; }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @{
+
+                        if ((item.NumberOfWins + item.NumberOfDefeats + item.NumberOfDraws) != 0)
+                        {
+                            double pecentage =  (item.NumberOfWins/(item.NumberOfWins + item.NumberOfDefeats + item.NumberOfDraws));
+                            pecentage = pecentage * 100;
+                            @string.Format("{0:0.00}", pecentage);
+                        }
+                    }
+
+
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
